@@ -1,7 +1,7 @@
 @import './decimals';
 
 // container mixin
-@mixin container($w: 320px, $mar: 0 auto, $pad: 0 20px) {
+@mixin container($w: 480px, $mar: 0 auto, $pad: 0 20px) {
   @if $w {
     max-width: $w;
 
@@ -22,5 +22,103 @@
 
   @if $pad {
     padding: $pad;
+  }
+}
+
+// section ident mixin
+@mixin section-indent($pt: 60px, $pb: $pt) {
+  padding-top: $pt;
+  padding-bottom: $pb;
+}
+
+//flex mixin
+@mixin flex(
+  $dsp: flex,
+  $fw: false,
+  $fd: false,
+  $ai: center,
+  $jc: center,
+  $indent: false
+) {
+  @if $dsp {
+    display: $dsp;
+  }
+  @if $fw {
+    flex-wrap: $fw;
+  }
+  @if $fd {
+    flex-direction: $fd;
+  }
+  @if $ai {
+    align-items: $ai;
+  }
+  @if $jc {
+    justify-content: $jc;
+  }
+  @if $indent {
+    gap: $indent;
+  }
+}
+
+// position absolute mixin
+@mixin position(
+  $pos: absolute,
+  $top: false,
+  $right: false,
+  $bot: false,
+  $left: false
+) {
+  @if $pos {
+    @if $pos == 'center' {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } @else {
+      position: $pos;
+    }
+  }
+
+  @if $top {
+    top: $top;
+  }
+
+  @if $right {
+    right: $right;
+  }
+
+  @if $bot {
+    bottom: $bot;
+  }
+
+  @if $left {
+    left: $left;
+  }
+}
+
+@mixin card-set($items: 1, $indentX: 32px, $indentY: $indentX) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $indentX $indentY;
+
+  & > [class*='__item'] {
+    flex-basis: calc((#{100%} - $indentY * ($items - 1)) / $items);
+  }
+}
+
+$breakpoints: (
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1200px,
+);
+@mixin mq($device, $type: min) {
+  @if map_has_key($breakpoints, $device) {
+    $width: map_get($breakpoints, $device);
+    @if $type == max {
+      $width: $width - 0.02;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
   }
 }
