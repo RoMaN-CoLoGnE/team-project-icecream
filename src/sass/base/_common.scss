@@ -3,31 +3,26 @@ html {
 }
 
 body {
+  font-family: $font, sans-serif;
   background-image: url('../images/body/bg-icecreem-480@1x.jpg');
 
-  @media (min-device-pixel-ratio: 2) and(max-width: 767px),
-    (min-resolution: 192dpi) and(max-width: 767px),
-    (min-resolution: 2dppx) and(max-width: 767px) {
+  @include mq(retina) {
     background-image: url('../images/body/bg-icecreem-480@2x.jpg');
   }
 
-  @media screen and(min-width: 768px) {
+  @include mq(tablet) {
     background-image: url('../images/body/bg-icecreem-768@1x.jpg');
+
+    @include mq(retina) {
+      background-image: url('../images/body/bg-icecreem-768@2x.jpg');
+    }
   }
 
-  @media (min-device-pixel-ratio: 2) and(min-width: 768px),
-    (min-resolution: 192dpi) and(min-width: 768px),
-    (min-resolution: 2dppx) and(min-width: 768px) {
-    background-image: url('../images/body/bg-icecreem-768@2x.jpg');
-  }
-
-  @media screen and(min-width: 1200px) {
+  @include mq(desktop) {
     background-image: url('../images/body/bg-icecreem-1200@1x.jpg');
-  }
 
-  @media (min-device-pixel-ratio: 2) and(min-width: 1200px),
-    (min-resolution: 192dpi) and(min-width: 1200px),
-    (min-resolution: 2dppx) and(min-width: 1200px) {
-    background-image: url('../images/body/bg-icecreem-1200@2x.jpg');
+    @include mq(retina) {
+      background-image: url('../images/body/bg-icecreem-1200@2x.jpg');
+    }
   }
 }

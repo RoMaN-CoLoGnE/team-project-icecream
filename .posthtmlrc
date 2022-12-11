@@ -2,11 +2,6 @@
   "plugins": {
     "posthtml-include": {
       "root": "./src/partials/"
-    },
-    "posthtml-expressions": {
-      "locals": {
-        "active": "OK"
-      }
     }
   }
 }
